@@ -15,7 +15,7 @@
         }
         .form_span {
             display: inline-block;
-            text-align: right;
+            text-align: left;
             width: 100px;
             margin-right: 10px;
         }
@@ -25,8 +25,8 @@
 
     <body>
         <div style="width:400px; margin:auto">
-            <h4>Rejestracja</h4>
-            <form method="post">
+            <h3>Rejestracja</h3>
+            <form action="register.php" method="post">
                 <h5>Dane osobowe</h5>
                 <div class="form_row">
                     <span class="form_span"> Imię: </span>
@@ -42,40 +42,40 @@
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Hasło: </span>
-                        <input class="aligned_input" type="password" name="password1"/><br/>
+                        <input type="password" name="password1"/><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Powtórz hasło: </span>
-                        <input class="aligned_input" type="password" name="password2"/><br/>
+                        <input type="password" name="password2"/><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Adres e-mail: </span>
-                        <input class="aligned_input" type="text" name="email"/><br/>
+                        <input type="text" name="email"/><br/>
                 </div>
                 <h5>Adres</h5>
                 <div class="form_row">
                     <span class="form_span"> Ulica: </span>
-                        <input class="aligned_input" type="text" name="street"/><br/>
+                        <input type="text" name="street"/><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Kod-pocztowy: </span>
-                        <input class="aligned_input" type="text" name="postal_code"/><br/>
+                        <input type="text" name="postal_code"/><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Miejscowość: </span>
-                        <input class="aligned_input" type="text" name="city"/><br/>
+                        <input type="text" name="city"/><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Województwo: </span>
-                        <input class="aligned_input" type="text" name="district"/><br/>
+                        <input type="text" name="district"/><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Kraj: </span>
-                        <input class="aligned_input" type="text" name="country"/><br/>
+                        <input type="text" name="country"/><br/>
                 </div>
                 <h5>Informacje dodatkowe</h5>
                 <div class="form_row">
-                    <label style="margin-right: 10px; width: 100px; display: inline-block; text-align: right;" 
+                    <label style="margin-right: 10px; width: 100px; display: inline-block; text-align: left;" 
                     for="education" accesskey="w">Wykształcenie: </label>
                     <input type="radio" name="education" value="podstawowe" /> podstawowe
                     <input type="radio" name="education" value="srednie" /> średnie
@@ -83,11 +83,11 @@
                 </div>
                 <div>
                     <label for="interests" accesskey="z">Zainteresowania: </label>
-                    <input style="margin-left: 15px;" type="checkbox" name="interests" value="sport"/> sport<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests" value="turystyka"/> turystyka<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests" value="kino"/> kino<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests" value="muzyka" /> muzyka<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests" value="gotowanie" /> gotowanie<br/>
+                    <input style="margin-left: 15px;" type="checkbox" name="interests[]" value="sport"/> sport<br/>
+                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="turystyka"/> turystyka<br/>
+                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="kino"/> kino<br/>
+                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="muzyka" /> muzyka<br/>
+                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="gotowanie" /> gotowanie<br/>
                 </div>
 
                 <input style="float:right; margin:20px; background-color:gold; cursor: pointer; border: none;" type="submit" value="Zarejestruj się"/>
