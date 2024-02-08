@@ -1,3 +1,31 @@
+<?php
+    if (isset($_POST['email'])) {
+        $firstname = $_POST["firstname"];
+        $lastname = $_POST["lastname"];
+        $username = $_POST["username"];
+        $password = $_POST["password1"];
+        $email = $_POST["email"];
+        $street = $_POST["street"];
+        $postal_code = $_POST["postal_code"];
+        $city = $_POST["city"];
+        $district = $_POST["district"];
+        $country = $_POST["country"];
+        $education = $_POST["education"];
+        $interests = $_POST["interests"];
+        require_once "connect.php";
+    
+        $conn = new mysqli($host, $db_user, $db_password, $db_name);
+        $conn->query("INSERT INTO user VALUES (NULL, '$firstname', '$lastname', '$username', '$password', '$email', '$street', '$postal_code', '$city', '$district', '$country', '$education')");
+        $last_id=$conn->insert_id;
+        foreach($interests as $interest){
+            $conn->query("INSERT INTO interests VALUES (NULL, $last_id, '$interest')");  
+        }
+        $conn->close();
+        header('Location: account.php');
+    }
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +54,7 @@
     <body>
         <div style="width:400px; margin:auto">
             <h3>Rejestracja</h3>
-            <form action="register.php" method="post">
+            <form method="post">
                 <h5>Dane osobowe</h5>
                 <div class="form_row">
                     <span class="form_span"> Imię: </span>

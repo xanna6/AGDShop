@@ -1,7 +1,13 @@
+<?php 
+
+    
+    
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rejestracja</title>
+        <title>Konto</title>
         <meta content="text/html; charset=UTF-8">
         <style type="text/css">
         body {
