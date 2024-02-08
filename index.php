@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     if (isset($_POST['email'])) {
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
@@ -21,6 +23,7 @@
             $conn->query("INSERT INTO interests VALUES (NULL, $last_id, '$interest')");  
         }
         $conn->close();
+        $_SESSION['user_id'] = $last_id;
         header('Location: account.php');
     }
 ?>
