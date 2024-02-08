@@ -87,7 +87,7 @@
             $interests = $_POST["interests"];
             $_SESSION["interests"] = $interests;
         }
-        
+
         $_SESSION["firstname"] = $firstname;
         $_SESSION["lastname"] = $lastname;
         $_SESSION["username"] = $username;
@@ -100,8 +100,28 @@
         $_SESSION["district"] = $district;
         $_SESSION["country"] = $country;
 
+        $conn = new mysqli($host, $db_user, $db_password, $db_name);
+        
+        //sprawdzenie, czy adres e-mail jest już w bazie
+        $result = $conn->query("SELECT id FROM user WHERE email='$email'");
+        $number_of_mails = $result->num_rows;
+        if($number_of_mails>0)
+        {
+            $validation_passed = false;
+            $_SESSION['e_email']="Istnieje już konto przypisane do tego adresu e-mail";
+        }		
+
+        //sprawdzenie, czy login jest już w bazie
+        $result = $conn->query("SELECT id FROM user WHERE username='$username'");
+        $number_of_usernames = $result->num_rows;
+        if($number_of_usernames>0)
+        {
+            $validation_passed = false;
+            $_SESSION['e_username']="Wybrany login jest zajęty";
+        }
+
         if($validation_passed) {
-            $conn = new mysqli($host, $db_user, $db_password, $db_name);
+            
             $conn->query("INSERT INTO user VALUES (NULL, '$firstname', '$lastname', '$username', '$password1', '$email', '$street', '$postal_code', '$city', '$district', '$country', '$education')");
             $last_id=$conn->insert_id;
             foreach($interests as $interest){
