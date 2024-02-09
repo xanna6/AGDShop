@@ -19,25 +19,7 @@
     <head>
         <title>Konto</title>
         <meta content="text/html; charset=UTF-8">
-        <style type="text/css">
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 10pt;
-            line-height: 1.8em;
-        }
-        .form_row {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .form_span {
-            display: inline-block;
-            text-align: left;
-            width: 100px;
-            margin-right: 10px;
-            font-weight: bold; 
-        }
-        
-        </style>
+        <link href="styles.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
