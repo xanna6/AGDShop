@@ -44,7 +44,7 @@
                     if(isset($_SESSION['cart']) && sizeof($_SESSION['cart']) > 0) {
                         echo " (".sizeof($_SESSION['cart']).")";
                     }?></a>
-                <a href="products.php" class="active">Produkty</a>
+                <a href="index.php" class="active">Produkty</a>
             </div>
         </div>
 

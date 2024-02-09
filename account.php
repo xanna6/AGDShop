@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div style="width:400px; margin:auto">
+        <div style="width:400px; margin:auto;">
             <h3>Twoje konto</h3>
                 <div class="form_row">
                     <span class="form_span"> Imię: </span>
