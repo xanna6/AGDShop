@@ -144,6 +144,9 @@
     </head>
 
     <body>
+        <div class="navigation_menu">
+            <span class="logo">AGDShop</span>
+        </div>
         <div style="width:400px; margin:auto">
             <h3>Rejestracja</h3>
             <form method="post">

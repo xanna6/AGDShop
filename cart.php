@@ -39,8 +39,12 @@
 
     <body>
         <div>
-            <div class="navigation_menu">
+            <div class="login_menu">
                 <span class="logo">AGDShop</span>
+                <a href="register.php">Zarejestruj się</a>
+                <a <?php if(isset($_SESSION['user_id'])) {echo 'style="display: none;"'; }?> href="login.php">Zaloguj się</a>
+            </div>
+            <div class="navigation_menu">
                 <a class="active" href="cart.php">Koszyk<?php 
                     if(isset($_SESSION['cart']) && sizeof($_SESSION['cart']) > 0) {
                         echo " (".sizeof($_SESSION['cart']).")";
