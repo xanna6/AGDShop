@@ -62,8 +62,15 @@ table tr {
   width: 65%;
   padding: 20px 0px;
 }
-.cart_button {
+.add_to_cart_button {
   background-color: gold;
+  height: 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.remove_from_cart_button {
+  background-color: orange;
   height: 25px;
   border: none;
   border-radius: 12px;
