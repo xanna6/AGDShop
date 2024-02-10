@@ -1,14 +1,21 @@
 <?php
     session_start();
     require_once "connect.php";
+    $conn = new mysqli($host, $db_user, $db_password, $db_name);
+
+    if(isset($_POST['delete_product'])) {
+        $product_id = $_POST['delete_product'];
+        $conn->query("UPDATE product SET deleted = 1 WHERE id = $product_id");
+    }
 
     //pobranie listy produktów z bazy
-    $conn = new mysqli($host, $db_user, $db_password, $db_name);
-    $result = $conn->query("SELECT *, product.id as product_id, category.name as category_name FROM product JOIN category ON product.category = category.id");
+    $result = $conn->query("SELECT *, product.id as product_id, category.name as category_name FROM product JOIN category ON product.category = category.id WHERE deleted = 0");
     $products = array();
     while($product = $result->fetch_assoc()) {
         $products[] =   $product;                      
     }
+
+    $conn->close();
 
     //dodawanie produktów do koszyka
     if(!isset($_SESSION['cart'])) {
