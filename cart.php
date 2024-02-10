@@ -65,11 +65,12 @@
                 <?php if(isset($_SESSION['user_id'])) {echo '<a href="logout.php">Wyloguj się</a>'; }?>
             </div>
             <div class="navigation_menu">
-                <a class="active" href="cart.php">Koszyk<?php 
+                <a <?php if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {echo 'style="display: none;"'; } ?> href="cart.php" class="active">Koszyk<?php 
                     if(isset($_SESSION['cart']) && sizeof($_SESSION['cart']) > 0) {
                         echo " (".sizeof($_SESSION['cart']).")";
                     }?></a>
                 <a href="index.php">Produkty</a>
+                <?php if(isset($_SESSION['user_id']) && $_SESSION['role'] && $_SESSION['role'] == 'user') {echo '<a href="account.php">Konto</a>'; }?>
             </div>
         </div>
 

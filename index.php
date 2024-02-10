@@ -73,6 +73,7 @@
                         echo " (".sizeof($_SESSION['cart']).")";
                     }?></a>
                 <a href="index.php" class="active">Produkty</a>
+                <?php if(isset($_SESSION['user_id']) && $_SESSION['role'] && $_SESSION['role'] == 'user') {echo '<a href="account.php">Konto</a>'; }?>
             </div>
         </div>
         <?php 

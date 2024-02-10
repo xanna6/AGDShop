@@ -1,17 +1,20 @@
 <?php 
 
     session_start(); 
-    $user_id = $_SESSION['user_id'];
+    if(isset($_SESSION['user_id']) && $_SESSION['role'] && $_SESSION['role'] == 'user') {
+        $user_id = $_SESSION['user_id'];
 
-    require_once "connect.php";
-    $conn = new mysqli($host, $db_user, $db_password, $db_name);
-    $result = $conn->query("SELECT user.id, firstname, lastname, username, password, email, street, postal_code, city, district, country, education, GROUP_CONCAT(interests.interest SEPARATOR ', ') AS interest_list 
-                            FROM user JOIN interests ON user.id = interests.user_id GROUP BY user.id HAVING user.id = $user_id");
-    if($result->num_rows == 0) {
-        header('Location: index.php');
+        require_once "connect.php";
+        $conn = new mysqli($host, $db_user, $db_password, $db_name);
+        $result = $conn->query("SELECT user.id, firstname, lastname, username, password, email, street, postal_code, city, district, country, education, GROUP_CONCAT(interests.interest SEPARATOR ', ') AS interest_list 
+                                FROM user JOIN interests ON user.id = interests.user_id GROUP BY user.id HAVING user.id = $user_id");
+        if($result->num_rows == 0) {
+            header('Location: index.php');
+        }
+        $row = $result->fetch_assoc();
+        $conn->close();
     }
-    $row = $result->fetch_assoc();
-    $conn->close();
+    
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +26,20 @@
     </head>
 
     <body>
+        <div class="login_menu">
+            <span class="logo">AGDShop</span>
+            <a href="register.php">Zarejestruj się</a>
+            <a <?php if(isset($_SESSION['user_id'])) {echo 'style="display: none;"'; }?> href="login.php">Zaloguj się</a>
+            <?php if(isset($_SESSION['user_id'])) {echo '<a href="logout.php">Wyloguj się</a>'; }?>
+        </div>
+        <div class="navigation_menu">
+            <a <?php if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {echo 'style="display: none;"'; } ?> href="cart.php">Koszyk<?php 
+                if(isset($_SESSION['cart']) && sizeof($_SESSION['cart']) > 0) {
+                    echo " (".sizeof($_SESSION['cart']).")";
+                }?></a>
+            <a href="index.php">Produkty</a>
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['role'] && $_SESSION['role'] == 'user') {echo '<a href="account.php" class="active">Konto</a>'; }?>
+        </div>
         <div style="width:400px; margin:auto;">
             <h3>Twoje konto</h3>
                 <div class="form_row">
@@ -45,12 +62,12 @@
                     <span class="form_span"> Adres e-mail: </span>
                     <?PHP echo $row["email"]; ?><br/>
                 </div>
-                <div class="form_row">
+                <div class="form_row" style="height: auto;">
                     <span class="form_span"> Adres: </span>
                     <span><?PHP echo $row["street"]; ?></span><br/>
-                    <span style="margin-left: 115px;"><?PHP echo $row["postal_code"]." ".$row["city"]; ?></span><br/>
-                    <span style="margin-left: 115px;"><?PHP echo $row["district"]; ?></span><br/>
-                    <span style="margin-left: 115px;"><?PHP echo $row["country"]; ?></span><br/>
+                    <span style="margin-left: 215px;"><?PHP echo $row["postal_code"]." ".$row["city"]; ?></span><br/>
+                    <span style="margin-left: 215px;"><?PHP echo $row["district"]; ?></span><br/>
+                    <span style="margin-left: 215px;"><?PHP echo $row["country"]; ?></span><br/>
                 </div>
                 <div class="form_row">
                     <span class="form_span"> Wykształcenie: </span>
