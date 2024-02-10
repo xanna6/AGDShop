@@ -10,6 +10,7 @@
         $country = $_POST["country"];
         $phone_number = $_POST["phone_number"];
         $email = $_POST['email'];
+        $user_id = $_SESSION['user_id'];
 
         $validation_passed=true;
 
@@ -53,6 +54,13 @@
         if (!$validation_passed) {
             header('Location: cart.php');
         } else {
+            $conn = new mysqli($host, $db_user, $db_password, $db_name);
+            $conn->query("INSERT INTO order_data VALUES (NULL, '$phone_number', '$street', '$postal_code', '$city', '$district', '$country', $user_id, now())");
+            $last_id=$conn->insert_id;
+            foreach($_SESSION['cart'] as $product_id){
+                $conn->query("INSERT INTO order_product VALUES (NULL, $last_id, '$product_id')");  
+            }
+            $conn->close();
             unset($_SESSION['cart']);
             unset($_SESSION['street']);
             unset($_SESSION['postal_code']);
