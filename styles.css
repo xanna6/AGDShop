@@ -95,6 +95,7 @@ table tr {
 .delete_product_button {
   background-color: darkred;
   height: 25px;
+  color: white;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -102,6 +103,7 @@ table tr {
 .edit_product_button {
   background-color: cornflowerblue;
   height: 25px;
+  color: white;
   border: none;
   border-radius: 12px;
   cursor: pointer;

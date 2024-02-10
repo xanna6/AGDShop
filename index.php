@@ -61,30 +61,44 @@
         </div>
 
         <?php 
-        echo '<form method="post"';
-        echo '<div class="product_table">';
-        echo '<table style="width:100%">';
+        if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
+            echo '<form id="product_table" action="product.php" method="get"';
+            echo '<div class="product_table">';
+            echo '<table style="width:100%">';
+                foreach($products as $product) {
+                    $price = $product['price']/100;
+                    $product_id = $product['product_id'];
+                    echo "<tr id=".$product_id.">";
+                    echo '<td class="product_name">'.$product["category_name"]." ".$product["manufacturer"]." ".$product["serial_number"]."</td>";
+                    echo "<td>".number_format($price, 2, ",", "")." zł</td>";
+                    echo "<td><button class='delete_product_button' type='submit' name='delete_product' value={$product_id}>Usuń</button></td> ";
+                    echo "<td><button class='edit_product_button' type='submit' name='edit_product' value={$product_id}>Edytuj</button></td> ";
+                    echo "</tr>";
+                }
+            echo '</table>';
+            echo '</div>';
+            echo '</form>';
+        } else {
+            echo '<form id="product_table" method="post"';
+            echo '<div class="product_table">';
+            echo '<table style="width:100%">';
             foreach($products as $product) {
                 $price = $product['price']/100;
                 $product_id = $product['product_id'];
                 echo "<tr id=".$product_id.">";
                 echo '<td class="product_name">'.$product["category_name"]." ".$product["manufacturer"]." ".$product["serial_number"]."</td>";
                 echo "<td>".number_format($price, 2, ",", "")." zł</td>";
-                if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
-                    echo "<td><button class='delete_product_button' type='submit' name='delete_product' value={$product_id}>Usuń</button></td> ";
-                    echo "<td><button class='edit_product_button' type='submit' name='edit_product' value={$product_id}>Edytuj</button></td> ";
+                if(isset($_SESSION['cart']) && in_array($product_id, $_SESSION['cart'])) {
+                    echo "<td><button class='remove_from_cart_button' type='submit' name='remove_from_cart' value={$product_id}>Usuń z koszyka</button></td> ";
                 } else {
-                    if(isset($_SESSION['cart']) && in_array($product_id, $_SESSION['cart'])) {
-                        echo "<td><button class='remove_from_cart_button' type='submit' name='remove_from_cart' value={$product_id}>Usuń z koszyka</button></td> ";
-                    } else {
-                        echo "<td><button class='add_to_cart_button' type='submit' name='add_to_cart' value={$product_id}>Dodaj do koszyka</button></td> ";
-                    }
+                    echo "<td><button class='add_to_cart_button' type='submit' name='add_to_cart' value={$product_id}>Dodaj do koszyka</button></td> ";
                 }
-                echo "</tr>";
+            echo "</tr>";
             }
-        echo '</table>';
-        echo '</div>';
-        echo '</form>';
+            echo '</table>';
+            echo '</div>';
+            echo '</form>';
+        }
         ?>
         
     </body>
