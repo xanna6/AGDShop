@@ -92,6 +92,20 @@ table tr {
   border-radius: 12px;
   cursor: pointer;
 }
+.delete_product_button {
+  background-color: darkred;
+  height: 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.edit_product_button {
+  background-color: cornflowerblue;
+  height: 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
 .confirm_button {
   float: right;
   margin: 20px;

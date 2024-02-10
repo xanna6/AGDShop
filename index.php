@@ -45,7 +45,7 @@
                 <?php if(isset($_SESSION['user_id'])) {echo '<a href="logout.php">Wyloguj się</a>'; }?>
             </div>
             <div class="navigation_menu">
-                <a href="cart.php">Koszyk<?php 
+                <a <?php if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {echo 'style="display: none;"'; } ?> href="cart.php">Koszyk<?php 
                     if(isset($_SESSION['cart']) && sizeof($_SESSION['cart']) > 0) {
                         echo " (".sizeof($_SESSION['cart']).")";
                     }?></a>
@@ -63,10 +63,15 @@
                 echo "<tr id=".$product_id.">";
                 echo '<td class="product_name">'.$product["category_name"]." ".$product["manufacturer"]." ".$product["serial_number"]."</td>";
                 echo "<td>".number_format($price, 2, ",", "")." zł</td>";
-                if(isset($_SESSION['cart']) && in_array($product_id, $_SESSION['cart'])) {
-                    echo "<td><button class='remove_from_cart_button' type='submit' name='remove_from_cart' value={$product_id}>Usuń z koszyka</button></td> ";
+                if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
+                    echo "<td><button class='delete_product_button' type='submit' name='delete_product' value={$product_id}>Usuń</button></td> ";
+                    echo "<td><button class='edit_product_button' type='submit' name='edit_product' value={$product_id}>Edytuj</button></td> ";
                 } else {
-                    echo "<td><button class='add_to_cart_button' type='submit' name='add_to_cart' value={$product_id}>Dodaj do koszyka</button></td> ";
+                    if(isset($_SESSION['cart']) && in_array($product_id, $_SESSION['cart'])) {
+                        echo "<td><button class='remove_from_cart_button' type='submit' name='remove_from_cart' value={$product_id}>Usuń z koszyka</button></td> ";
+                    } else {
+                        echo "<td><button class='add_to_cart_button' type='submit' name='add_to_cart' value={$product_id}>Dodaj do koszyka</button></td> ";
+                    }
                 }
                 echo "</tr>";
             }
