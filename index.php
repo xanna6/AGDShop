@@ -32,6 +32,22 @@
             unset($_SESSION['cart'][$index]); 
         }
     }
+
+    if(isset($_SESSION['manufacturer'])) {
+        unset($_SESSION['manufacturer']);
+    }
+    if(isset($_SESSION['serial_number'])) {
+        unset($_SESSION['serial_number']);
+    }
+    if(isset($_SESSION['energy_class'])) {
+        unset($_SESSION['energy_class']);
+    }
+    if(isset($_SESSION['price'])) {
+        unset($_SESSION['price']);
+    }
+    if(isset($_SESSION['category'])) {
+        unset($_SESSION['category']);
+    }
 ?>
 
 
@@ -62,6 +78,7 @@
 
         <?php 
         if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
+            echo '<a href="product.php"><button class="add_product_button" name="add_product">Dodaj produkt</button></a>';
             echo '<form id="product_table" action="product.php" method="get"';
             echo '<div class="product_table">';
             echo '<table style="width:100%">';

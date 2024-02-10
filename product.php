@@ -5,16 +5,12 @@
 
     if(isset($_GET['edit_product'])) {
         $product_id = $_GET['edit_product'];
-        $_SESSION['product_id'] = $product_id;
 
         if(!isset($_SESSION['manufacturer'])) {
-            $product_id = $_SESSION['product_id'];
             $result = $conn->query("SELECT product.id as product_id, category.id as category, manufacturer, serial_number, energy_class, price 
                                     FROM product JOIN category ON product.category = category.id 
                                     WHERE product.id = $product_id");
             $row = $result->fetch_assoc();
-            echo $row['energy_class'];
-            $_SESSION['product_id'] = $product_id;
             $_SESSION["manufacturer"] = $row['manufacturer'];
             $_SESSION["serial_number"] = $row['serial_number'];
             $_SESSION["energy_class"] = $row['energy_class'];
@@ -28,7 +24,6 @@
         $serial_number = $_POST["serial_number"];
         $energy_class = $_POST["energy_class"];
         $price = $_POST["price"];
-        $category = $_POST["category"];
 
         //Walidacja formularza
         $validation_passed=true;
@@ -65,9 +60,14 @@
         $conn = new mysqli($host, $db_user, $db_password, $db_name);
         
         if($validation_passed) {
+
+            if(!isset($product_id) || $product_id == null) {
+                $conn->query("INSERT INTO product VALUES (NULL, '$manufacturer','$serial_number', $category, '$energy_class', ".floatval($price*100).", 0)");
+            } else {
+                $conn->query("UPDATE product SET manufacturer = '$manufacturer', serial_number = '$serial_number', energy_class = '$energy_class', price =".floatval($price*100).", category = $category 
+                            WHERE id = $product_id");
+            }
             
-            $conn->query("UPDATE product SET manufacturer = '$manufacturer', serial_number = '$serial_number', energy_class = '$energy_class', price =".floatval($price*100).", category = $category
-                          WHERE id = $product_id");
             $conn->close();
 
             unset($_SESSION["manufacturer"]);
@@ -75,7 +75,11 @@
             unset($_SESSION["energy_class"]);
             unset($_SESSION["price"]);
             unset($_SESSION["category"]);
-            unset($_SESSION["product_id"]);
+            unset($_SESSION["e_manufacturer"]);
+            unset($_SESSION["e_serial_number"]);
+            unset($_SESSION["e_energy_class"]);
+            unset($_SESSION["e_price"]);
+            unset($_SESSION["e_category"]);
             header('Location: index.php');
         }
     }
@@ -168,7 +172,7 @@
                 <div class="form_row">
                     <span class="form_span"> Cena: </span>
                     <input type="text" value="<?php
-                        if (isset($_SESSION['price']))
+                        if (isset($_SESSION['price']) && $_SESSION['price'] != null && $_SESSION['price'] != "")
                         {
                             echo number_format($_SESSION['price'], 2, ".", "");
                             unset($_SESSION['price']);
@@ -183,7 +187,14 @@
                     ?>
                 </div>
 
-                <input style="float:right; margin:20px; background-color:gold; cursor: pointer; border: none;" type="submit" value="Edytuj produkt"/>
+                <button style="float: right; margin: 20px; background-color: gold; cursor: pointer; border: none; height: 25px; border-radius: 12px;" type="submit" >
+                <?php 
+                    if(isset($_GET['edit_product'])) {
+                        echo "Edytuj produkt";
+                    } else {
+                        echo "Dodaj produkt";
+                    }
+                ?></button>
             </form>
         </div>
         

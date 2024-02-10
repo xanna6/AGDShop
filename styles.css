@@ -108,6 +108,16 @@ table tr {
   border-radius: 12px;
   cursor: pointer;
 }
+.add_product_button {
+  background-color: green;
+  height: 40px;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  float: right;
+  margin: 30px 200px;
+}
 .confirm_button {
   float: right;
   margin: 20px;
