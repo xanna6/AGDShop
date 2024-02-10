@@ -9,12 +9,13 @@
 
         $conn = new mysqli($host, $db_user, $db_password, $db_name);
         
-        $result = $conn->query("SELECT id FROM user WHERE username='$username' AND password='$password'");
+        $result = $conn->query("SELECT id, role FROM user WHERE username='$username' AND password='$password'");
         $number_of_users = $result->num_rows;
         if($number_of_users > 0)
         {
             $row = $result->fetch_assoc();
             $_SESSION['user_id'] = $row['id'];
+            $_SESSION['role'] = $row['role'];
             if(isset($_SESSION['last_visited_page']) && $_SESSION['last_visited_page'] == "cart") {
                 header('Location: cart.php');
                 unset($_SESSION['last_visited_page']);

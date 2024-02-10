@@ -122,7 +122,7 @@
 
         if($validation_passed) {
             
-            $conn->query("INSERT INTO user VALUES (NULL, '$firstname', '$lastname', '$username', '$password1', '$email', '$street', '$postal_code', '$city', '$district', '$country', '$education')");
+            $conn->query("INSERT INTO user VALUES (NULL, '$firstname', '$lastname', '$username', '$password1', '$email', '$street', '$postal_code', '$city', '$district', '$country', '$education', 'user')");
             $last_id=$conn->insert_id;
             foreach($interests as $interest){
                 $conn->query("INSERT INTO interests VALUES (NULL, $last_id, '$interest')");  
