@@ -42,7 +42,7 @@
 
     <body>
         <div class="navigation_menu">
-            <span class="logo">AGDShop</span>
+            <a href="index.php" style="text-decoration: none; float: left; font-size: xxx-large; font-weight: bold;">AGDShop</a>
         </div>
         <?php if(isset($_SESSION['statement'])) {
             echo '<div style="text-align: center; margin-top: 20px;">';

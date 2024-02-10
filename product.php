@@ -98,7 +98,7 @@
 
     <body>
         <div class="navigation_menu">
-            <span class="logo">AGDShop</span>
+            <a href="index.php" style="text-decoration: none; float: left; font-size: xxx-large; font-weight: bold;">AGDShop</a>
         </div>
         <div style="width:500px; margin:auto">
             <h3>Szczegóły produktu</h3>

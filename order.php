@@ -94,7 +94,7 @@
     <body>
         <div>
             <div class="navigation_menu">
-                <span class="logo">AGDShop</span>
+                <a href="index.php" style="text-decoration: none; float: left; font-size: xxx-large; font-weight: bold;">AGDShop</a>
             </div>
             <div style="text-align: center; margin-top: 100px;">
                 Dziękujemy za złożenie zamówienia</br>

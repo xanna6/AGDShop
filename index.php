@@ -62,7 +62,7 @@
     <body>
         <div>
             <div class="login_menu">
-                <span class="logo">AGDShop</span>
+                <a href="index.php" style="text-decoration: none; float: left; font-size: xxx-large; font-weight: bold;">AGDShop</a>
                 <a href="register.php">Zarejestruj się</a>
                 <a <?php if(isset($_SESSION['user_id'])) {echo 'style="display: none;"'; }?> href="login.php">Zaloguj się</a>
                 <?php if(isset($_SESSION['user_id'])) {echo '<a href="logout.php">Wyloguj się</a>'; }?>
