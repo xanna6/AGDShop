@@ -44,6 +44,12 @@
         <div class="navigation_menu">
             <span class="logo">AGDShop</span>
         </div>
+        <?php if(isset($_SESSION['statement'])) {
+            echo '<div style="text-align: center; margin-top: 20px;">';
+            echo $_SESSION['statement'];
+            echo '</div>';
+            unset($_SESSION['statement']);
+        } ?>  
         <div style="width:400px; margin:auto">
             <form method="post">
                 <h5>Logowanie</h5>

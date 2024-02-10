@@ -63,9 +63,11 @@
 
             if(!isset($product_id) || $product_id == null) {
                 $conn->query("INSERT INTO product VALUES (NULL, '$manufacturer','$serial_number', $category, '$energy_class', ".floatval($price*100).", 0)");
+                $_SESSION['statement'] = "Produkt został dodany";
             } else {
                 $conn->query("UPDATE product SET manufacturer = '$manufacturer', serial_number = '$serial_number', energy_class = '$energy_class', price =".floatval($price*100).", category = $category 
                             WHERE id = $product_id");
+                $_SESSION['statement'] = "Produkt został zedytowany";
             }
             
             $conn->close();

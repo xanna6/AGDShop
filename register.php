@@ -128,8 +128,8 @@
                 $conn->query("INSERT INTO interests VALUES (NULL, $last_id, '$interest')");  
             }
             $conn->close();
-            $_SESSION['user_id'] = $last_id;
-            header('Location: account.php');
+            $_SESSION['statement'] = "Dziekujemy za rejestrację. Prosimy o zalogowanie się na konto";
+            header('Location: login.php');
         }
     }
 ?>
@@ -147,7 +147,7 @@
         <div class="navigation_menu">
             <span class="logo">AGDShop</span>
         </div>
-        <div style="width:400px; margin:auto">
+        <div style="width:500px; margin:auto">
             <h3>Rejestracja</h3>
             <form method="post">
                 <h5>Dane osobowe</h5>
@@ -334,7 +334,7 @@
                 </div>
                 <h5>Informacje dodatkowe</h5>
                 <div class="form_row">
-                    <label style="margin-right: 10px; width: 100px; display: inline-block; text-align: left;" 
+                    <label style="margin-right: 10px; width: 200px; display: inline-block; text-align: left;" 
                     for="education" accesskey="w">Wykształcenie: </label>
                     <input type="radio" name="education" value="podstawowe" <?php echo (isset($_SESSION["education"]) && $_SESSION["education"] == "podstawowe") ? 'checked="checked"':''; ?>/> podstawowe
                     <input type="radio" name="education" value="średnie" <?php echo (isset($_SESSION["education"]) && $_SESSION["education"] == "średnie") ? 'checked="checked"':''; ?>/> średnie
@@ -350,15 +350,15 @@
                 </div>
                 <div style="margin-top: 10px;">
                     <label for="interests" accesskey="z">Zainteresowania: </label>
-                    <input style="margin-left: 15px;" type="checkbox" name="interests[]" value="sport" 
+                    <input style="margin-left: 95px;" type="checkbox" name="interests[]" value="sport" 
                         <?php echo (isset($_SESSION["interests"]) && in_array("sport", $_SESSION["interests"])) ? 'checked="checked"':'';  ?>/> sport<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="turystyka"
+                    <input style="margin-left: 220px;" type="checkbox" name="interests[]" value="turystyka"
                         <?php echo (isset($_SESSION["interests"]) && in_array("turystyka", $_SESSION["interests"])) ? 'checked="checked"':''; ?>/> turystyka<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="kino"
+                    <input style="margin-left: 220px;" type="checkbox" name="interests[]" value="kino"
                         <?php echo (isset($_SESSION["interests"]) && in_array("kino", $_SESSION["interests"])) ? 'checked="checked"':''; ?>/> kino<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="muzyka" 
+                    <input style="margin-left: 220px;" type="checkbox" name="interests[]" value="muzyka" 
                         <?php echo (isset($_SESSION["interests"]) && in_array("muzyka", $_SESSION["interests"])) ? 'checked="checked"':''; ?>/> muzyka<br/>
-                    <input style="margin-left: 120px;" type="checkbox" name="interests[]" value="gotowanie" 
+                    <input style="margin-left: 220px;" type="checkbox" name="interests[]" value="gotowanie" 
                         <?php echo (isset($_SESSION["interests"]) && in_array("gotowanie", $_SESSION["interests"])) ? 'checked="checked"':''; ?>/> gotowanie<br/>
                     <?php
                         unset($_SESSION['interests']);

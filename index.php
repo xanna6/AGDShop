@@ -75,8 +75,13 @@
                 <a href="index.php" class="active">Produkty</a>
             </div>
         </div>
-
         <?php 
+        if(isset($_SESSION['statement'])) {
+            echo '<div style="text-align: center; margin-top: 20px;">';
+            echo $_SESSION['statement'];
+            echo '</div>';
+            unset($_SESSION['statement']);
+        }
         if(isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
             echo '<a href="product.php"><button class="add_product_button" name="add_product">Dodaj produkt</button></a>';
             echo '<form id="product_table" action="product.php" method="get"';
