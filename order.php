@@ -54,8 +54,9 @@
         if (!$validation_passed) {
             header('Location: cart.php');
         } else {
+            $order_price = $_SESSION['order_price']*100;
             $conn = new mysqli($host, $db_user, $db_password, $db_name);
-            $conn->query("INSERT INTO order_data VALUES (NULL, '$phone_number', '$street', '$postal_code', '$city', '$district', '$country', $user_id, now())");
+            $conn->query("INSERT INTO order_data VALUES (NULL, '$phone_number', '$street', '$postal_code', '$city', '$district', '$country', $user_id, now(), $order_price)");
             $last_id=$conn->insert_id;
             foreach($_SESSION['cart'] as $product_id){
                 $conn->query("INSERT INTO order_product VALUES (NULL, $last_id, '$product_id')");  
@@ -76,6 +77,7 @@
             unset($_SESSION['e_country']);
             unset($_SESSION['e_email']);
             unset($_SESSION['e_phone_number']);
+            unset($_SESSION['order_price']);
         }
     }
 ?>

@@ -74,6 +74,10 @@ body {
 table tr {
   border-top: thin solid;
 }
+table td {
+  vertical-align: top;
+  text-align: left;
+}
 .product_name {
   width: 65%;
   padding: 20px 0px;

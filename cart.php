@@ -71,6 +71,7 @@
                     }?></a>
                 <a href="index.php">Produkty</a>
                 <?php if(isset($_SESSION['user_id']) && $_SESSION['role'] && $_SESSION['role'] == 'user') {echo '<a href="account.php">Konto</a>'; }?>
+                <?php if(isset($_SESSION['user_id'])) {echo '<a href="orders.php">Zamówienia </a>'; }?>
             </div>
         </div>
 
@@ -92,6 +93,7 @@
                     echo "<td><button class='remove_from_cart_button' type='submit' name='remove_from_cart' value={$product_id}>Usuń z koszyka</button></td> ";
                     echo "</tr>";
                 }
+            $_SESSION['order_price'] = $sum;
             echo '<tr id="cart_sum">';
             echo '<td class="product_name" style="font-weight: bold;">Suma: </td>';
             echo '<td style="font-weight: bold;">'.number_format($sum, 2, ",", "").' zł</td>';

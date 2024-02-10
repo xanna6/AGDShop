@@ -39,6 +39,7 @@
                 }?></a>
             <a href="index.php">Produkty</a>
             <?php if(isset($_SESSION['user_id']) && $_SESSION['role'] && $_SESSION['role'] == 'user') {echo '<a href="account.php" class="active">Konto</a>'; }?>
+            <?php if(isset($_SESSION['user_id'])) {echo '<a href="orders.php">Zamówienia </a>'; }?>
         </div>
         <div style="width:400px; margin:auto;">
             <h3>Twoje konto</h3>
