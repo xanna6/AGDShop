@@ -25,10 +25,20 @@
             $products[] = $product;                      
         }
 
-        if(isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-            $result = $conn->query("SELECT id, street, postal_code, city, district, country, email FROM user WHERE user.id = $user_id");
+        if(!isset($_SESSION['email'])) {
+            if(isset($_SESSION['user_id'])) {
+                $user_id = $_SESSION['user_id'];
+                $result = $conn->query("SELECT id, street, postal_code, city, district, country, email FROM user WHERE user.id = $user_id");
+                $row = $result->fetch_assoc();
+                $_SESSION["email"] = $row['email'];
+                $_SESSION["street"] = $row['street'];
+                $_SESSION["postal_code"] = $row['postal_code'];
+                $_SESSION["city"] = $row['city'];
+                $_SESSION["district"] = $row['district'];
+                $_SESSION["country"] = $row['country'];
+            }
         }
+        
         $conn->close();
 
         //do przekierowania z powrotem do koszyka po zalogowaniu
