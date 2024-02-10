@@ -42,6 +42,7 @@
                 <span class="logo">AGDShop</span>
                 <a href="register.php">Zarejestruj się</a>
                 <a <?php if(isset($_SESSION['user_id'])) {echo 'style="display: none;"'; }?> href="login.php">Zaloguj się</a>
+                <?php if(isset($_SESSION['user_id'])) {echo '<a href="logout.php">Wyloguj się</a>'; }?>
             </div>
             <div class="navigation_menu">
                 <a href="cart.php">Koszyk<?php 

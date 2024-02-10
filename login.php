@@ -15,7 +15,12 @@
         {
             $row = $result->fetch_assoc();
             $_SESSION['user_id'] = $row['id'];
+            if(isset($_SESSION['last_visited_page']) && $_SESSION['last_visited_page'] == "cart") {
+                header('Location: cart.php');
+                unset($_SESSION['last_visited_page']);
+            } else {
             header('Location: index.php');
+            }
         } else {
             $_SESSION['e_login']="Niepoprawny login lub hasło";
         }	
